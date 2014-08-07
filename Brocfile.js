@@ -20,4 +20,5 @@ app.import('vendor/bootstrap/dist/css/bootstrap.css');
 app.import('vendor/bootstrap/dist/js/bootstrap.js');
 app.import("vendor/ember-addons.bs_for_ember/dist/js/bs-core.min.js");
 app.import("vendor/ember-addons.bs_for_ember/dist/js/bs-nav.min.js");
+app.import("vendor/lorem.js")
 module.exports = app.toTree();

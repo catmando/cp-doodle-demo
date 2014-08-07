@@ -32,8 +32,8 @@
           <a class="btn navbar-brand" data-target="#myModal" data-toggle="modal" >Design Builder</a>
         </div>
         <div class="navbar-collapse collapse">
-          {{bs-tabs id="mainNavTabs" contentBinding="content" selectedBinding="selected" class="navbar-nav"}}
-          <ul class="nav navbar-nav navbar-right">
+          {{bs-tabs id="mainNavTabs" contentBinding="tabs" selectedBinding="selected" class="navbar-nav"}}
+          <ul class="nav navbar-nav navbar-right" style="display: none">
             <li><a href="../navbar/">Default</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li>
             <li class="active"><a href="./">Fixed top</a></li>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <img src="/img/cp_header.png" class="hidden-xs placeholder">
-    {{bs-tabs-panes items-id="mainNavTabs" contentBinding="content"}}
+    {{bs-tabs-panes items-id="mainNavTabs" contentBinding="tabs"}}
 
 
 {{outlet}}
