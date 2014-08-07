@@ -32,7 +32,7 @@
           <a class="btn navbar-brand" data-target="#myModal" data-toggle="modal" >Design Builder</a>
         </div>
         <div class="navbar-collapse collapse">
-          {{bs-pills contentBinding="content" selectedBinding="selected" class="navbar-nav"}}
+          {{bs-tabs id="mainNavTabs" contentBinding="content" selectedBinding="selected" class="navbar-nav"}}
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">Default</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li>
@@ -41,18 +41,8 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+    <img src="/img/cp_header.png" class="hidden-xs placeholder">
+    {{bs-tabs-panes items-id="mainNavTabs" contentBinding="content"}}
 
-    <div class="container">
-      <img src="/img/cp_header.png" class="hidden-xs placeholder">
-      <div class="jumbotron">
-        <h1>You are on the <i>{{selected}}</i> page</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
-
-    </div> <!-- /container -->
 
 {{outlet}}
