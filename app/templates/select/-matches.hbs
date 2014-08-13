@@ -1,0 +1,13 @@
+<h2>Matches</h2>
+<div>
+  {{#each background in controller.results}}
+    <div class="background">
+      <div class="background-image-container">
+        <img {{bind-attr class="background.displayClass"}} 
+             {{bind-attr src=background.unescapedUrl}} 
+             {{bind-attr title="background.toolTipTitle"}}>
+      </div>
+      <span><input type="checkbox">Favorite</input>&nbsp;<input type="checkbox">hide</input>
+    </div>
+  {{/each}}
+</div>
