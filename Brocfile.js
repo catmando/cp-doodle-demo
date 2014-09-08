@@ -17,9 +17,9 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('vendor/bootstrap/dist/css/bootstrap.css');
-app.import('vendor/bootstrap/dist/js/bootstrap.js');
-app.import("vendor/ember-addons.bs_for_ember/dist/js/bs-core.min.js");
-app.import("vendor/ember-addons.bs_for_ember/dist/js/bs-nav.min.js");
+app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+app.import("bower_components/ember-addons.bs_for_ember/dist/js/bs-core.min.js");
+app.import("bower_components/ember-addons.bs_for_ember/dist/js/bs-nav.min.js");
 app.import("vendor/lorem.js")
 module.exports = app.toTree();
