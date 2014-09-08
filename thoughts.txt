@@ -1,0 +1,29 @@
+query -> goes to server
+
+filters -> goes to store
+
+filters: http://emberjs.com/api/data/classes/DS.Store.html#method_filter
+
+filter (type, query, filter)
+
+looks like query can be either a simple object (number or string) in which case it treats the query as an :id and generates a GET /resource-name/:id/
+
+or it can be a hash in which case it translates it to a query string of property=value pairs... i.e. GET /resource-name?prop=val&prop=val..
+
+http://emberjs.com/guides/models/frequently-asked-questions/#toc_should-i-use-a-query-or-a-filter-to-search-records
+
+App.PostsFavoritedRoute = Ember.Route.extend({
+  model: function() {
+    var store = this.store;
+
+    // Create a filter for all favorited posts that will be displayed in
+    // the template. Any favorited posts that are already in the store
+    // will be displayed immediately;
+    // Kick off a query to the server for all posts that
+    // the user has favorited. As results from the query are
+    // returned from the server, they will also begin to appear.
+    return store.filter('post', { favorited: true }, function(post) {
+      return post.get('isFavorited');
+    });
+  }
+});
