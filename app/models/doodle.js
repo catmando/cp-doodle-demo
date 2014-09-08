@@ -1,26 +1,16 @@
-import Ember from 'ember';
-import DS from 'ember-data';
+/*
 
-var Doodle = DS.Model.extend({
-  url: DS.attr('string'),
-  width: DS.attr('string'),
-  height: DS.attr('string')
-});
+design = background + personalization
 
-Doodle.reopenClass({
- FIXTURES: 
+background/:bg_id/personalize/:personalization
 
-  (function(data) {
-    data = data["responseData"]["results"];
-    var fixture = [];
-    Ember.$.each(data, function(i, d) {
-      fixture.push({id: i, url: d.unescapedUrl, width: d.width, height: d.height});
-    });
-    return fixture;
-  })(
-// results of http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=birthday+invitation&start=4
-{"responseData": {"results":[{"GsearchResultClass":"GimageSearch","width":"400","height":"566","imageId":"ANd9GcQgFT4XGia0cU1dVQUhlN5h7gKsSjr5LmZoDb6om43YzEO9d11Qv6QmI-dz","tbWidth":"95","tbHeight":"134","unescapedUrl":"http://www.samplewords.com/docthumbs/home-birthday-invitation3-thumb.jpg","url":"http://www.samplewords.com/docthumbs/home-birthday-invitation3-thumb.jpg","visibleUrl":"www.samplewords.com","title":"Free Printable \u003cb\u003eBirthday\u003c/b\u003e Party \u003cb\u003eInvitation\u003c/b\u003e - Cake and Presents Theme :","titleNoFormatting":"Free Printable Birthday Party Invitation - Cake and Presents Theme :","originalContextUrl":"http://www.samplewords.com/free-printable-birthday-party-invitation-cake-and-presents-theme/","content":"Download \u003cb\u003eBirthday Invitation\u003c/b\u003e","contentNoFormatting":"Download Birthday Invitation","tbUrl":"http://t2.gstatic.com/images?q\u003dtbn:ANd9GcQgFT4XGia0cU1dVQUhlN5h7gKsSjr5LmZoDb6om43YzEO9d11Qv6QmI-dz"},{"GsearchResultClass":"GimageSearch","width":"512","height":"512","imageId":"ANd9GcQxMF2INdfyTuvTQvNzDUVzujIhDWbBacxIzpuxl9sef_tKDytV6T9ddJTj","tbWidth":"131","tbHeight":"131","unescapedUrl":"http://rlv.zcache.com/mickey_mouse_birthday_invitation_announcement-r01725cb7a73643b98a934ce77e5ed888_imtqg_8byvr_512.jpg?bg\u003d0xffffff","url":"http://rlv.zcache.com/mickey_mouse_birthday_invitation_announcement-r01725cb7a73643b98a934ce77e5ed888_imtqg_8byvr_512.jpg%3Fbg%3D0xffffff","visibleUrl":"www.zazzle.com","title":"\u003cb\u003eBirthday Invitations\u003c/b\u003e, 230,000+ \u003cb\u003eBirthday\u003c/b\u003e Announcements \u0026amp; Invites","titleNoFormatting":"Birthday Invitations, 230,000+ Birthday Announcements \u0026amp; Invites","originalContextUrl":"http://www.zazzle.com/birthday+invitations","content":"Mickey Mouse \u003cb\u003eBirthday Invitation\u003c/b\u003e Announcement","contentNoFormatting":"Mickey Mouse Birthday Invitation Announcement","tbUrl":"http://t3.gstatic.com/images?q\u003dtbn:ANd9GcQxMF2INdfyTuvTQvNzDUVzujIhDWbBacxIzpuxl9sef_tKDytV6T9ddJTj"},{"GsearchResultClass":"GimageSearch","width":"1000","height":"2250","imageId":"ANd9GcT7mEN2gmDNSG4j6oqt6-K75_OUykLqCW-CfOIXXc9EhnaPPX0fOnwDwyk","tbWidth":"67","tbHeight":"150","unescapedUrl":"http://www.menowolali.com/images/9447-birthday-party-invitation-child.jpg","url":"http://www.menowolali.com/images/9447-birthday-party-invitation-child.jpg","visibleUrl":"www.menowolali.com","title":"Child \u003cb\u003eBirthday\u003c/b\u003e Party Themes | Custom Printable \u003cb\u003eInvitation\u003c/b\u003e Templates","titleNoFormatting":"Child Birthday Party Themes | Custom Printable Invitation Templates","originalContextUrl":"http://www.menowolali.com/46527-child-birthday-party-themes","content":"\u003cb\u003eBirthday\u003c/b\u003e Party \u003cb\u003eInvitation\u003c/b\u003e","contentNoFormatting":"Birthday Party Invitation","tbUrl":"http://t2.gstatic.com/images?q\u003dtbn:ANd9GcT7mEN2gmDNSG4j6oqt6-K75_OUykLqCW-CfOIXXc9EhnaPPX0fOnwDwyk"},{"GsearchResultClass":"GimageSearch","width":"630","height":"414","imageId":"ANd9GcSjaLyvq4HqOo2fc7HVm_MirdLNX9tK8H5tLgVID2pm5mJDFupJkgM36Pw","tbWidth":"137","tbHeight":"90","unescapedUrl":"http://ui.announcing-it.com/images/Boys-Cupcake-and-Balloons-Birthday-Invitation.jpg","url":"http://ui.announcing-it.com/images/Boys-Cupcake-and-Balloons-Birthday-Invitation.jpg","visibleUrl":"www.announcingit.com","title":"First \u003cb\u003eBirthday\u003c/b\u003e Party \u003cb\u003eInvitations\u003c/b\u003e, 1st \u003cb\u003eBirthday Invitations\u003c/b\u003e \u003cb\u003e...\u003c/b\u003e","titleNoFormatting":"First Birthday Party Invitations, 1st Birthday Invitations ...","originalContextUrl":"http://www.announcingit.com/main/product.asp?catid\u003d41\u0026pid\u003d32","content":"First \u003cb\u003eBirthday Invitations\u003c/b\u003e","contentNoFormatting":"First Birthday Invitations","tbUrl":"http://t3.gstatic.com/images?q\u003dtbn:ANd9GcSjaLyvq4HqOo2fc7HVm_MirdLNX9tK8H5tLgVID2pm5mJDFupJkgM36Pw"}],"cursor":{"resultCount":"7,670,000","pages":[{"start":"0","label":1},{"start":"4","label":2},{"start":"8","label":3},{"start":"12","label":4},{"start":"16","label":5},{"start":"20","label":6},{"start":"24","label":7},{"start":"28","label":8}],"estimatedResultCount":"7670000","currentPageIndex":1,"moreResultsUrl":"http://www.google.com/images?oe\u003dutf8\u0026ie\u003dutf8\u0026source\u003duds\u0026start\u003d4\u0026hl\u003den\u0026q\u003dbirthday+invitation","searchResultTime":"0.22"}}, "responseDetails": null, "responseStatus": 200}    
-  )
-});
-console.log("FIXTURES has %d elements",Doodle.FIXTURES.length);
-export default Doodle;
+ember constructs personalization model (which is really just a encoded hash)
+
+   JSON.parse(decodeURIComponent(encodeURIComponent(JSON.stringify(personalization_object)))) -> id
+   encodeURIComponent(JSON.stringify(personalization_id)) -> object
+   
+same path followed by things like .png, etc give you back yer foobar
+
+
+
+*/

@@ -5,6 +5,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('personalize');
+  this.route('select');
+  this.route('order');
+  return this.route('tutorial');
 });
 
 export default Router;

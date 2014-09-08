@@ -50,6 +50,10 @@ div.background-image-container {
   padding-bottom: 5px;
 }
 
+div.waiting {
+  display: none;
+}
+
 img.landscape-background {
   width: 100px;
 }

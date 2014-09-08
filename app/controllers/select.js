@@ -1,36 +1,41 @@
 import Ember from "ember";
 
 var SelectController = Ember.ArrayController.extend({
-  init: function() {
-    this.set('results', []);
-  },
+  queryParams: ['q'],
+  q: null,
+  results: [],
   search: function() {
     var query = this.get('q');
-    console.log('SelectController: '+query);
     if (query) {
       var tthis = this;
-      //var results = [];
       this.set('results', []);
       var url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&callback=?&q=printable card "+query+"&start=";
-      var insertResults = function(data) {
-        for(var i=0;i<data.responseData.results.length;i++) {
-          if (parseInt(data.responseData.results[i].width) < parseInt(data.responseData.results[i].height)) {
-            data.responseData.results[i].displayClass = "portrait-background"
-          } else {
-            data.responseData.results[i].displayClass = "landscape-background"
+      var insertResults = function(start) {
+        Ember.$.getJSON(url+start, function (data) {
+          for(var i=0;i<data.responseData.results.length;i++) {
+            (function (img, result) {
+              img.onload = function () {
+                if (parseInt(result.width) < parseInt(result.height)) {
+                  result.displayClass = "portrait-background";
+                } else {
+                  result.displayClass = "landscape-background";
+                }
+                result.toolTipTitle = 
+                  "dimensions: " + result.width + " x " + result.height;
+                tthis.get('results').pushObject(result);
+                };
+              img.src = result.unescapedUrl;
+            }(new Image(), data.responseData.results[i]));
           }
-          data.responseData.results[i].toolTipTitle = 
-            "dimensions: " + data.responseData.results[i].width + " x " + data.responseData.results[i].height
-        }
-        tthis.get('results').pushObjects(data.responseData.results);
-        var l = tthis.get('results').length;
-        if (l < 20) {
-          Ember.$.getJSON(url+l, insertResults);
-        }};
-      Ember.$.getJSON(url+0, insertResults);
+          var l = start+data.responseData.results.length;
+          if (l < 20) {
+            insertResults(l);
+          }
+        });
+      };
+      insertResults(0);
     }
-  }
+  }.observes('q')
 });
-
 
 export default SelectController;
