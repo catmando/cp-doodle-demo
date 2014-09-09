@@ -6,4 +6,4 @@ export default Ember.Route.extend({
       replace: true
     }
   }
-})
+});
